@@ -3,7 +3,7 @@ class CreateTarefas < ActiveRecord::Migration[6.1]
     create_table :tarefas do |t|
       t.string :nome, limit: 200
       t.boolean :concluido
-      t.references :grupo, null: false, foreign_key: true
+      t.references :grupo, null: true, foreign_key: true
 
       t.timestamps
     end
