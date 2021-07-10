@@ -11,14 +11,6 @@ require 'rspec/rails'
 # require database cleaner at the top level
 require 'database_cleaner'
 
-# configure shoulda matchers to use rspec as the test framework and full matcher libraries for rails
-Shoulda::Matchers.configure do |config|
-  config.integrate do |with|
-    with.test_framework :rspec
-    with.library :rails
-  end
-end
-
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -40,6 +32,13 @@ end
 # If you are not using ActiveRecord, you can remove these lines.
 begin
   ActiveRecord::Migration.maintain_test_schema!
+  # configure shoulda matchers to use rspec as the test framework and full matcher libraries for rails
+  Shoulda::Matchers.configure do |config|
+    config.integrate do |with|
+      with.test_framework :rspec
+      with.library :rails
+    end
+  end
 rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
