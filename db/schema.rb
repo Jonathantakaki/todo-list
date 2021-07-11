@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2021_07_09_233407) do
   create_table "tarefas", force: :cascade do |t|
     t.string "nome", limit: 200
     t.boolean "concluido"
-    t.integer "grupo_id", null: false
+    t.integer "grupo_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["grupo_id"], name: "index_tarefas_on_grupo_id"
