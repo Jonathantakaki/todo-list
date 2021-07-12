@@ -4,11 +4,10 @@ class GruposController < ApplicationController
   # GET /grupos
   def index
     @grupos = Grupo.all
-    json_response(@grupos)
   end
 
   # POST /grupos
-  def create    
+  def create
     @grupo = Grupo.create!(grupo_params)
     json_response(@grupo, :created)
   end

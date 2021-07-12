@@ -1,10 +1,12 @@
 class TarefasController < ApplicationController
   before_action :set_grupo
   before_action :set_grupo_tarefa, only: [:show, :update, :destroy]
+  skip_before_action :set_grupo, only: [:ultimas_tarefas]
+
 
   # GET /grupos/:grupo_id/tarefas
   def index
-    json_response(@grupo.tarefas)
+    @tarefas = @grupo.tarefas
   end
 
   # GET /grupos/:grupo_id/tarefas/:id
@@ -26,8 +28,14 @@ class TarefasController < ApplicationController
 
   # DELETE /grupos/:grupo_id/tarefas/:id
   def destroy
-    @tarefa.destroy
+    @tarefa.removido = DateTime.current.to_date
+    @tarefa.save!
     head :no_content
+  end
+
+  def ultimas_tarefas
+    @tarefas = Tarefa.all.order(id: :desc).limit(10)
+    json_response(@tarefas)
   end
 
   private

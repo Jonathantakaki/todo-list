@@ -14,13 +14,15 @@ ActiveRecord::Schema.define(version: 2021_07_09_233407) do
 
   create_table "grupos", force: :cascade do |t|
     t.string "nome", limit: 50
+    t.datetime "removido"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "tarefas", force: :cascade do |t|
     t.string "nome", limit: 200
-    t.boolean "concluido"
+    t.datetime "concluido"
+    t.datetime "removido"
     t.integer "grupo_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
